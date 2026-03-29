@@ -15,16 +15,7 @@
       "all_frames": false
     },
     {
-      "matches": [
-        "*://*.voe.sx/*",
-        "*://*.doodstream.com/*",
-        "*://*.dood.watch/*",
-        "*://*.dood.ws/*",
-        "*://*.dood.re/*",
-        "*://*.filemoon.sx/*",
-        "*://*.filemoon.in/*",
-        "*://*.vidmoly.to/*"
-      ],
+      "matches": ["<all_urls>"],
       "js": ["player.js"],
       "run_at": "document_idle",
       "all_frames": true
