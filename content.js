@@ -1,10 +1,10 @@
 (() => {
   if (!location.pathname.match(/\/staffel-\d+\/episode-\d+/)) return;
 
-  // Auto-select: German Sub / Japanese Dub (key 2) > German Dub (key 1, default)
+  // Auto-select: German Sub / Japanese Dub (key 3) > German Dub (key 1, default)
   const currentLang = document.querySelector('img.selectedLanguage')?.dataset.langKey;
-  if (currentLang !== '2') {
-    const preferredLangBtn = document.querySelector('.changeLanguageBox img[data-lang-key="2"]');
+  if (currentLang !== '3') {
+    const preferredLangBtn = document.querySelector('.changeLanguageBox img[data-lang-key="3"]');
     if (preferredLangBtn) preferredLangBtn.click();
   }
 
@@ -30,11 +30,11 @@
   btn.textContent = 'Next Episode →';
   btn.addEventListener('click', () => { window.location.href = nextUrl; });
 
-  // Insert as overlay inside the player section
-  const playerSection = document.querySelector('.hosterSiteVideo');
-  if (playerSection) {
-    playerSection.style.position = 'relative';
-    playerSection.appendChild(btn);
+  // Insert as overlay inside the actual video wrapper
+  const streamSection = document.querySelector('.inSiteWebStream');
+  if (streamSection) {
+    streamSection.style.position = 'relative';
+    streamSection.appendChild(btn);
   }
 
   // Show 90s before estimated episode end (adjust EPISODE_DURATION_SEC per season)
@@ -42,13 +42,8 @@
   const SHOW_DELAY_MS = Math.max(0, (EPISODE_DURATION_SEC - 90) * 1000);
   setTimeout(() => btn.classList.remove('next-episode-btn--hidden'), SHOW_DELAY_MS);
 
-  // Keep button visible when the player container goes fullscreen
+  // Fullscreen: switch to fixed positioning so button stays over the player
   document.addEventListener('fullscreenchange', () => {
-    const fs = document.fullscreenElement;
-    if (fs && !(fs instanceof HTMLIFrameElement)) {
-      fs.appendChild(btn);
-    } else if (!fs && playerSection) {
-      playerSection.appendChild(btn);
-    }
+    btn.classList.toggle('next-episode-btn--fullscreen', !!document.fullscreenElement);
   });
 })();

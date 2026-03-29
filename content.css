@@ -19,6 +19,10 @@
   display: none;
 }
 
+.next-episode-btn--fullscreen {
+  position: fixed;
+}
+
 .next-episode-btn:hover {
   background: #c73a18;
 }
