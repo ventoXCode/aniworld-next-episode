@@ -1,1 +1,16 @@
-/* styles added in phase 2 */
+.next-episode-btn {
+  display: block;
+  margin: 12px auto;
+  padding: 10px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background: #e8471e;
+  color: #fff;
+}
+
+.next-episode-btn:hover {
+  background: #c73a18;
+}

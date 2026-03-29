@@ -12,3 +12,13 @@ if (!nextUrl) {
 }
 
 console.log('[next-episode]', nextUrl);
+
+if (!nextUrl) return;
+
+const btn = document.createElement('button');
+btn.className = 'next-episode-btn';
+btn.textContent = 'Next Episode →';
+btn.addEventListener('click', () => { window.location.href = nextUrl; });
+
+const playerSection = document.querySelector('.hosterSiteVideo');
+if (playerSection) playerSection.insertAdjacentElement('afterend', btn);
