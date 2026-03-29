@@ -42,8 +42,14 @@
   const SHOW_DELAY_MS = Math.max(0, (EPISODE_DURATION_SEC - 90) * 1000);
   setTimeout(() => btn.classList.remove('next-episode-btn--hidden'), SHOW_DELAY_MS);
 
-  // Fullscreen: switch to fixed positioning so button stays over the player
+  // Fullscreen: reparent button to body so it renders above the fullscreen iframe
   document.addEventListener('fullscreenchange', () => {
-    btn.classList.toggle('next-episode-btn--fullscreen', !!document.fullscreenElement);
+    if (document.fullscreenElement) {
+      document.body.appendChild(btn);
+      btn.classList.add('next-episode-btn--fullscreen');
+    } else {
+      if (streamSection) streamSection.appendChild(btn);
+      btn.classList.remove('next-episode-btn--fullscreen');
+    }
   });
 })();
