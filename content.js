@@ -37,10 +37,12 @@
     streamSection.appendChild(btn);
   }
 
-  // Show 90s before estimated episode end (adjust EPISODE_DURATION_SEC per season)
-  const EPISODE_DURATION_SEC = 24 * 60;
-  const SHOW_DELAY_MS = Math.max(0, (EPISODE_DURATION_SEC - 90) * 1000);
-  setTimeout(() => btn.classList.remove('next-episode-btn--hidden'), SHOW_DELAY_MS);
+  // Show button when the embedded video player reports 90s remaining via postMessage
+  window.addEventListener('message', (e) => {
+    if (e.data?.type === 'aniworld-near-end') {
+      btn.classList.remove('next-episode-btn--hidden');
+    }
+  });
 
   // Fullscreen: reparent button to body so it renders above the fullscreen iframe
   document.addEventListener('fullscreenchange', () => {

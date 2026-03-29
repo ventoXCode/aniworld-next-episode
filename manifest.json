@@ -13,6 +13,21 @@
       "js": ["content.js"],
       "run_at": "document_idle",
       "all_frames": false
+    },
+    {
+      "matches": [
+        "*://*.voe.sx/*",
+        "*://*.doodstream.com/*",
+        "*://*.dood.watch/*",
+        "*://*.dood.ws/*",
+        "*://*.dood.re/*",
+        "*://*.filemoon.sx/*",
+        "*://*.filemoon.in/*",
+        "*://*.vidmoly.to/*"
+      ],
+      "js": ["player.js"],
+      "run_at": "document_idle",
+      "all_frames": true
     }
   ]
 }
