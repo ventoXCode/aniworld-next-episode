@@ -1,6 +1,9 @@
 .next-episode-btn {
+  position: absolute;
+  bottom: 60px;
+  right: 16px;
+  z-index: 2147483647;
   display: block;
-  margin: 12px auto;
   padding: 10px 28px;
   font-size: 15px;
   font-weight: 600;
@@ -9,6 +12,11 @@
   border-radius: 6px;
   background: #e8471e;
   color: #fff;
+  transition: background 0.2s;
+}
+
+.next-episode-btn--hidden {
+  display: none;
 }
 
 .next-episode-btn:hover {
