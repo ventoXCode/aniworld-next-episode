@@ -27,7 +27,7 @@
   // Create overlay button
   const btn = document.createElement('button');
   btn.className = 'next-episode-btn next-episode-btn--hidden';
-  btn.textContent = 'Next Episode →';
+  btn.textContent = 'Next Episode';
   btn.addEventListener('click', () => { window.location.href = nextUrl; });
 
   // Insert as overlay inside the actual video wrapper
@@ -37,10 +37,15 @@
     streamSection.appendChild(btn);
   }
 
-  // Show button when the embedded video player reports 90s remaining via postMessage
+  // Show button when the embedded video player reports 120s remaining via postMessage
+  // Also pass nextUrl to the iframe so it can show a button inside fullscreen
   window.addEventListener('message', (e) => {
     if (e.data?.type === 'aniworld-near-end') {
       btn.classList.remove('next-episode-btn--hidden');
+      const iframe = document.querySelector('.inSiteWebStream iframe');
+      if (iframe?.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'aniworld-next-url', url: nextUrl }, '*');
+      }
     }
   });
 
